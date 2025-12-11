@@ -1,0 +1,35 @@
+{
+  "name": "express-mongoose-backend",
+  "version": "1.0.0",
+  "description": "A basic backend project using Express and Mongoose",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "seed": "node src/scripts/seed-database.js",
+    "seed-prestadores": "node src/scripts/seed-prestadores.js",
+    "seed-sedes": "node src/scripts/seed-sedes.js",
+    "seed-notas": "node src/scripts/seed-notas.js",
+    "seed-sit-terapeuticas": "node src/scripts/seed-sit-terapeuticas.js",
+    "seed-solicitudes": "node src/scripts/seed-solicitudes.js",
+    "seed-turnos-completo": "node src/scripts/seed-turnos-completo.js",
+    "seed-all": "npm run seed-prestadores && npm run seed && npm run seed-notas && npm run seed-sit-terapeuticas && npm run seed-solicitudes  && npm run seed-turnos-completo && npm run seed-demo && npm run seed-dashboard",
+    "seed-demo": "node src/scripts/seed-demo.js",
+    "seed-dashboard": "node src/scripts/seed-dashboard-solicitudes.js",
+    "fix-nro-solicitudes": "node src/scripts/fix-nro-solicitudes.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^5.10.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "author": "",
+  "license": "ISC"
+}
