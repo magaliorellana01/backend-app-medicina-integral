@@ -17,7 +17,7 @@ const { verifyTokenMiddleware } = require("./middlewares/authMiddleware");
 const turnosRoutes = require("./routes/turnos");
 const sedesRoutes = require("./routes/sedes");
 
-// Importar modelos para registrarlos
+// Importar modelos
 require("./models/socio");
 require("./models/historiaClinica");
 require("./models/nota");
@@ -31,14 +31,27 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+
+
+
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "http://localhost:3000", 
+  process.env.FRONTEND_URL, 
+  "https://appprestadoresmedicos.onrender.com" 
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: allowedOrigins, 
     credentials: true,
   })
 );
-// Servir archivos estáticos de uploads para poder descargar
+
+
+// Servir archivos estáticos
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Database connection
 mongoose
   .connect(process.env.MONGODB_URI, {
@@ -54,7 +67,7 @@ app.use("/situaciones-terapeuticas", verifyTokenMiddleware, situacionTerapeutica
 app.use("/filtro-solicitudes", verifyTokenMiddleware, filtroSolicitudesRoutes);
 app.use("/solicitud", verifyTokenMiddleware, solicitudRoutes);
 
-app.use("/prestador", prestadorRoutes); // no necesita authToken porque es para el login
+app.use("/prestador", prestadorRoutes); 
 app.use("/turnos", turnosRoutes);
 app.use("/sedes", sedesRoutes);
 
